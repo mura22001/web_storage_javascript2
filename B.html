@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="="UTF-8">
+	<title>web_event_listener</title>
+
+	<script>
+		window.addEventListener("load", function(){
+			var inputKey = document.getElementById("inputKey");
+			var inputValue = document.getElementById("inputValue");
+			var delKey = document.getElementById("delKey");
+			var recBtn = document.getElementById("recBtn");
+			var delBtn = document.getElementById("delBtn");
+			var clearBtn = document.getElementById("clearBtn");
+
+			recBtn.addEventListener("click", function(){
+				var iKey = inputKey.value;
+				var iVal = inputValue.value;
+
+				if(iKey=="" || iVal== ""){
+					alert("キーと値のどちらかの値が空です");
+					return;
+				}
+				localStorage.setItem(iKey,iVal);
+			});
+
+			delBtn.addEventListener("click", function(){
+				var delKeyVal = delKey.value;
+
+				if(delKeyVal==""){
+					alert("キー名が空です");
+					return;
+				}
+				localStorage.removeItem(delKeyVal);
+			});
+
+			clearBtn.addEventListener("click", function(){
+				localStorage.clear();
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<h1>Web Storageのサンプル</h1>
+	<p>#要Webサーバー</p>
+	<h2>新規登録・上書き</h2>
+	キー名：<input type="text" id="inputKey">
+	値：<input type="text" id="inputValue">
+	<button id="recBtn">Web Storageに記録</button>
+	<hr>
+	<h2>指定キーを削除</h2>
+	キー名:<input type="text" id="delKey">
+	<button id="delBtn">このキーを削除</button>
+	<hr>
+	<h2>すべて削除</h2>
+	<button id="clearBtn">Web Storageから全部削除</button>
+	<br><br>
+</body>
+</html>

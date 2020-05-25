@@ -1,0 +1,45 @@
+<!DOCTYPE htlm>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>２ファイル</title>
+
+	<script>
+		window.addEventListener("load", function(){
+			var disp = document.getElementById("disp");
+
+			window.addEventListener("storage", function(ev){
+				var tmpTxt = "Web Storageのデータに変化がありました<br>";
+
+				if(ev.oldValue != null && ev.newValue != null){
+					tmpTxt += ev.key + "でデータの上書きがありました<br>";
+					tmpTxt += "記録されている値は" + ev.newValue + "です<br>";
+					tmpTxt += "上書き前の値は" + ev.oldValue + "でした<br>";
+				}
+
+				if(ev.oldValue == null && ev.newValue != null){
+					tmpTxt += ev.key + "が新しく設定されました";
+					tmpTxt += "記録されている値は" + ev.newValue + "です<br>";
+				}
+
+				if(ev.oldValue != null && ev.newValue == null){
+					tmpTxt += "キー" + ev.key + "とその値が削除されました";
+				}
+
+				if(ev.oldValue == null && ev.newValue == null){
+					tmpTxt += "ストレージの内容がすべて削除されました";
+				}
+
+				disp.innerHTML = tmpTxt;
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<h1>Web Storageのサンプル</h1>
+	<a href="B.html" target="_blank">入力ページ</a>
+	<br><br>
+	<div id="disp">ここに情報が出ます</div>
+</body>
+</html>
